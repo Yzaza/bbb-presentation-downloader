@@ -28,7 +28,10 @@ if (!baseUrl.startsWith('http://') && !baseUrl.startsWith('https://')) {
   process.exit(1);
 }
 
-console.log('Using base URL:', baseUrl);
+// Ensure URL ends with trailing slash
+const normalizedUrl = baseUrl.endsWith('/') ? baseUrl : baseUrl + '/';
+
+console.log('Using base URL:', normalizedUrl);
 
 let slideNumber = 1;
 
@@ -57,7 +60,7 @@ function askQuestion(question) {
 // Function to fetch a slide
 async function fetchSlide(num) {
   return new Promise((resolve) => {
-    https.get(`${baseUrl}${num}`, (response) => {
+    https.get(`${normalizedUrl}${num}`, (response) => {
       if (response.statusCode === 404) {
         resolve(null);
         return;
@@ -94,7 +97,7 @@ async function downloadAllSVGs() {
     const svgContent = await fetchSlide(slideNum);
 
     if (!svgContent) {
-      console.log('Reached end at slide ${slideNum}. Total slides downloaded: ${slideNum - 1}\n`);
+      console.log(`Reached end at slide ${slideNum}. Total slides downloaded: ${slideNum - 1}\n`);
       hasError = true;
       break;
     }
