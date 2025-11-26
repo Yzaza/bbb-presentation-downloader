@@ -2,12 +2,12 @@
   "name": "bbb-presentation-downloader",
   "version": "1.0.0",
   "description": "Download BigBlueButton presentations and convert to PDF",
-  "main": "bbb_presentation_downloader.js",
+  "main": "bbb_presentation_downloader_interactive.js",
   "bin": {
-    "bbb-downloader": "bbb_presentation_downloader.js"
+    "bbb-downloader": "bbb_presentation_downloader_interactive.js"
   },
   "scripts": {
-    "start": "node bbb_presentation_downloader.js"
+    "start": "node bbb_presentation_downloader_interactive.js"
   },
   "dependencies": {
     "pdfkit": "^0.13.0",
